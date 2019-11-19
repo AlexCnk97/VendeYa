@@ -1,0 +1,83 @@
+/*Inicio Sesion y registrarse*/
+
+body{
+    margin:0;
+    padding: 0;
+    background-size: cover;
+}
+
+
+
+.main-content{
+    margin: 0 auto;
+    margin-top: 25%;
+    padding:0;
+}
+
+.modal-content{
+
+    opacity: .90;
+    padding: 0 20px;
+    box-shadow: 0px 0px 3px #848484;
+}
+
+
+.logo{
+    margin-top: -50px;
+    margin-bottom: 35px;
+}
+
+.logo img{
+    width: 100px;
+    height: 100px;
+    box-shadow: 0px 0px 3px #848484;
+    border-radius: 50%;
+}
+
+.form-group::before{
+    font-family: "Font Awesome\ 5 Free";
+    position: absolute;
+    left: 28px;
+    font-size: 22px;
+    padding-top: 10px;
+}
+
+.form-group input{
+    height: 50px;
+    font-size: 18px;
+    padding-left: 54px;
+    border-radius: 5px;
+    outline: none;
+}
+
+.form-group#user-group::before{
+    content: "\f2bd";
+}
+
+.form-group#password-group::before{
+    content: "\f023";
+}
+.form-group#number-group::before{
+    content: "\f3cd";
+}
+
+.form-group#email-group::before{
+    content: "\f1fa";
+}
+
+.register{
+    padding:5px 0;
+}
+
+.register a{
+    text-decoration: none;
+}
+
+.register a:hover{
+    color: #848484;
+}
+
+.btn:hover{
+    transform: scale(1.01);
+}
+

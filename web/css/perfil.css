@@ -1,0 +1,90 @@
+body{
+    margin: 0;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    /*Cambiar*/
+    margin: 0;
+    margin-bottom: 115px;
+}
+/*Cambiar*/
+html {
+    min-height: 100%;
+    position: relative;
+  }
+
+.navbar{
+    box-shadow: 2px 2px 5px #000;
+}
+
+.main-header{
+    background: url(../img/bg-main2.jpeg);
+    background-size: cover;
+    min-height: 450px;
+}
+
+.background-overlay{
+    background: rgba(30, 39, 46,.6);
+    background-size: cover;
+    min-height: 450px;
+}
+
+.img-fluido{
+    border: 10px solid #333;
+    box-shadow: 2px 2px 5px #000;
+}
+
+.card{
+    text-align: center;
+}
+
+.carro{
+    font-size: 45px;
+}
+
+.carro:hover{
+    transform: scale(1.1);
+}
+
+.social{
+    font-size: 20px;
+}
+
+.social:hover{
+    transform: scale(1.2);
+    cursor: pointer;
+}
+
+/* Cambiar en el proyecto */
+footer{
+  font-size: 14px;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 90px;
+}
+
+
+/* Perfil del usuario*/
+.profile{
+    width: 90px;
+    height: 90px;
+    
+}
+
+.producto{
+    width: 150px;
+    height: 150px;
+}
+.producto:hover{
+    transform: scale(.9);
+    transition: .7s;
+}
+.productovendido{
+    width: 150px;
+    height: 150px;
+    filter: grayscale(100%);
+}
+.informacion{
+    font-size: 14px;
+}
+
