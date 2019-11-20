@@ -33,7 +33,7 @@
                         <div class="row">
                             <%if (list.isEmpty()) {%>
                             <div class="alert alert-primary col-12" role="alert">
-                               Ups! No se encontro ningun resultado...
+                                Ups! No se encontró ningun resultado...
                             </div>
                             <%} else {%>
 

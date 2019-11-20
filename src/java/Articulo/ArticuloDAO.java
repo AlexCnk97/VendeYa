@@ -124,9 +124,10 @@ public class ArticuloDAO implements ArticuloCRUD {
                 + "a.precio,\n"
                 + "b.Imagen\n"
                 + "from productos a,\n"
-                + "productos_imagenes b\n"
-                + "where (a.idProducto = b.idProducto) and a.nombre like '%" + nombre + "%'\n"
-                + "group by a.idProducto;";
+                + "productos_imagenes b,\n"
+                + "publicaciones c\n"
+                + "where (a.idProducto = b.idProducto) and (c.idProducto = a.idProducto) and (c.estado=true) and a.nombre like '%" + nombre + "%'\n"
+                + "group by a.idProducto";
 
         try {
             rs = this.database.excuteQuery(sql);

@@ -9,7 +9,7 @@
 <nav class="navbar navbarMine navbar-expand-lg navbar-dark bg-primary py-1">
     <div class="container">
         <a data-toggle="tooltip" data-placement="right" title="VendeYa!" class="navbar-brand mr-5" href="<%=request.getContextPath()%>/">
-            <img src="./img/logo.png" width="30" height="30" class="d-inline-block align-top" alt="">
+            <img src="../img/logo.png" width="30" height="30" class="d-inline-block align-top" alt="">
             VendeYa!
 
         </a>
