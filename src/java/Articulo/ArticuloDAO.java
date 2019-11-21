@@ -148,4 +148,42 @@ public class ArticuloDAO implements ArticuloCRUD {
         return list;
     }
 
+    @Override
+    public ArrayList<Articulo> CategoriasArtic(int id) {
+        ArrayList<Articulo> List = new ArrayList<Articulo>();
+        ResultSet rs = null;
+        String Consulta = "select \n"
+                + "a.idProducto,\n"
+                + "a.nombre,\n"
+                + "a.precio,\n"
+                + "b.Imagen,\n"
+                + "d.nombre\n"
+                + "from productos a, \n"
+                + "productos_imagenes b,\n"
+                + "publicaciones c,\n"
+                + "categorias d,\n"
+                + "subcategorias e\n"
+                + "where (a.idProducto = b.idProducto) and (a.idProducto = c.idProducto) and (a.idSubCategoria = e.idsubCategoria)\n"
+                + "and (d.idCategoria = e.idCategoria) and (d.idCategoria = " + id + " ) and (c.estado=true)"
+                + "group by a.idProducto";
+        try {
+            rs = this.database.excuteQuery(Consulta);
+            while(rs.next()){
+                Articulo articulo = new Articulo();
+                articulo.setIdArticulo(rs.getInt("a.idProducto"));
+                articulo.setNombre(rs.getString("a.nombre"));
+                articulo.setPrecio(rs.getDouble("a.precio"));
+                articulo.setCategoria(rs.getString("d.nombre"));
+                ArrayList<String> images = new ArrayList<>();
+                images.add(rs.getString("b.Imagen"));
+                articulo.setImagesList(images);
+                List.add(articulo);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ArticuloDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return List;
+    }
+
 }

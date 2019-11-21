@@ -68,15 +68,22 @@
                     GetCategorias gc = new GetCategorias();
                     ArrayList<Categoria> lstC = gc.getAllCategorias();
                 %>
-                <%for(int i=0;i<lstC.size();i++){%>
+                <%for (int i = 0; i < lstC.size(); i++) {%>
                 <div class="col-lg-3 col-sm-6 mb-5">
-                     <div class="card text-center">
-                     <div class="card-body">
+                    <div class="card text-center">
+                        <div class="card-body">
                             <i class="<%=lstC.get(i).getImg()%>"></i>
                             <h5 class="card-title"> <%=lstC.get(i).getNombre()%> </h5>
                             <p class="card-text"><%=lstC.get(i).getDescripcion()%></p>
-                            <a data-toggle="tooltip" data-placement="bottom" title=""  href="#"
-                               class="btn btn-primary px-5">Ver</a>
+
+                            <form action="<%=request.getContextPath()%>/Search" method="get"
+                                  class="d-none d-xl-block d-lg-block d-xl-none  form-inline my-2 my-lg-2 ml-auto justify-content-center align-self-center">
+                                <input name="query" class="form-control mr-sm-3 py-1 pr-5" type="hidden">
+                                <input name="category" value="<%=lstC.get(i).getIdCategoria()%>" type="hidden">
+                                <input name="page" value="" type="hidden">
+                                <button  data-toggle="tooltip" data-placement="top" title="Buscar"
+                                         class="btn btn-primary  btn-outline-none my-2 my-sm-2 " type="submit">Ver Publicaciones</button>
+                            </form>
                         </div>
                     </div>
                 </div>

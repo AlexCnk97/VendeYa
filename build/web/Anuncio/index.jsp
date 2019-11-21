@@ -47,8 +47,7 @@
 
     </head>
     <body>
-        <jsp:include page="../headers/navbarquestions.jsp" />
-
+        <jsp:include page="../headers/navbar.jsp" />
 
         <!--Modal para imagenes-->
 
@@ -124,8 +123,8 @@
                                     <div class="col-8">
                                         <span class=""><%=cuenta.getUser().getNombre()%></span><br>
 
-                                        <span class="badge badge-primary">Enviar Mensaje
-
+                                        <span class="badge badge-primary">
+                                            <%=cuenta.getUser().getNumero()%>
                                         </span>
                                         <%--cuenta.getUser().getNumero()--%>
                                     </div>

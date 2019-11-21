@@ -19,5 +19,6 @@ public interface ArticuloCRUD {
     public void InsertarArticulo(Articulo articulo);
     public void insertarArticuloImages(int id,String imagen,String dir);
     public ArrayList<Articulo> SearchArticulo(String nombre);
+    public ArrayList<Articulo> CategoriasArtic(int id);
     
 }

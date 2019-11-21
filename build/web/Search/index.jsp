@@ -16,11 +16,14 @@
         <%
             ArrayList<Articulo> list = (ArrayList<Articulo>) request.getAttribute("ArticuloList");
         %>
+         <%///Obtenemos el puerto
+            int port = request.getServerPort();
+        %>
     </head>
     <body class="bg-light">
 
         <!--Navbar-->
-        <jsp:include page="../headers/navbarquestions.jsp" />
+        <jsp:include page="../headers/navbar.jsp" />
 
         <br><br>
         <div class="container">
@@ -49,7 +52,7 @@
                                             + str.substring(pos + 1);
 
                                 %>
-                                <a href="http://localhost:39035/VendeYa/Anuncio?idArticulo=<%=list.get(i).getIdArticulo()%>" class="text-decoration-none">
+                                <a href="http://localhost:<%=port%>/VendeYa/Anuncio?idArticulo=<%=list.get(i).getIdArticulo()%>" class="text-decoration-none">
                                     <div class="card mb-3">
                                         <img style="object-fit: cover" src="<%=str%>" class="card-img-top" alt="..." width="200px" height="200px">
                                         <div class="card-body">
@@ -58,7 +61,7 @@
                                                     $<%=list.get(i).getPrecio()%>
                                                 </span>
                                             </p>
-                                            <a href="http://localhost:39035/VendeYa/Anuncio?idArticulo=<%=list.get(i).getIdArticulo()%>" class="btn btn-primary mt-3">Ver Detalles</a>
+                                            <a href="http://localhost:<%=port%>/VendeYa/Anuncio?idArticulo=<%=list.get(i).getIdArticulo()%>" class="btn btn-primary mt-3">Ver Detalles</a>
                                         </div>
                                     </div>
                                 </a>

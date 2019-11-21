@@ -104,10 +104,25 @@ public class Articulo {
     private SubCategoria subCategoria;
     private ArrayList<String> imagesList;
     private String Descripcion;
+    private String Categoria;
     
     public Articulo(){
         this.imagesList = new ArrayList<>();
         this.subCategoria = new SubCategoria();
         
+    }
+
+    /**
+     * @return the Categoria
+     */
+    public String getCategoria() {
+        return Categoria;
+    }
+
+    /**
+     * @param Categoria the Categoria to set
+     */
+    public void setCategoria(String Categoria) {
+        this.Categoria = Categoria;
     }
 }

@@ -53,6 +53,14 @@ public class Search extends HttpServlet {
             }
             if (!request.getParameter("category").isEmpty()) {
                 category = Integer.parseInt(request.getParameter("category"));
+                ArrayList<Articulo> articulo2 = new ArrayList<Articulo>();
+                ArticuloDAO dao2 = new ArticuloDAO();
+
+                articulo2 = dao2.CategoriasArtic(category);
+                
+                request.setAttribute("ArticuloList", articulo2);
+                RequestDispatcher rdp = request.getRequestDispatcher("/Category/");
+                rdp.forward(request, response);
             }
             if (!request.getParameter("page").isEmpty()) {
                 page = Integer.parseInt(request.getParameter("page"));
