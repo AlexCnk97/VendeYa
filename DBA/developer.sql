@@ -46,7 +46,7 @@ idSubCategoria int not null,
 Descripcion varchar(1000) not null,
 primary key(idProducto),
 foreign key(idSubCategoria)
-references SubCategorias(idsubCategoria)
+references subCategorias(idsubCategoria)
 )engine = innoDB;
 
 create table Productos_Imagenes(

@@ -36,7 +36,8 @@
         int port = request.getServerPort();
     %>
     <input id="port" type="hidden" value="<%=port%>"/>
-    <input id="idCuenta" type="hidden" value="<%=ct.getIdCuenta()%>">
+    <input id="idUser" type="hidden" value="<%=user.getIdUsuario()%>">
+    <input id="correo" type="hidden" value="<%=user.getCorreo()%>">
     <!--Navbar-->
     <jsp:include page="../headers/navbarquestions.jsp" />
     <!--Modal-->
@@ -107,12 +108,12 @@
                 <div class="tab-pane fade show active" id="Activos" role="tabpanel" aria-labelledby="home-tab">
                     <div class="jumbotron">
                         <div class="row">
-                            <%if(listPos.isEmpty()){%>
+                            <%if (listPos.isEmpty()) {%>
                             <div class="col-12 alert alert-info text-muted" role="alert">
                                 No has hecho un anuncio
                             </div>
                             <%} else {
-                                    for (int i = 0; i < listPos.size(); i++) {%>
+                                for (int i = 0; i < listPos.size(); i++) {%>
                             <div class="col-12 col-sm-6 col-md-12 col-lg-6 col-xl-6 my-2">
                                 <div class="card mb-3" style="width: 100%">
                                     <div class="row no-gutters">
@@ -155,7 +156,7 @@
                                 </div>
                             </div>
                             <%}
-                                    }%>
+                                }%>
                         </div>
                     </div>
                 </div>
@@ -168,7 +169,7 @@
                                 No has Vendido ningun Articulo.
                             </div>
                             <%} else {
-                                    for (int i = 0; i < listVend.size(); i++) {%>
+                                for (int i = 0; i < listVend.size(); i++) {%>
                             <div class="col-12 col-sm-6 col-md-12 col-lg-6 col-xl-6 my-2">
                                 <div class=" bg-secondary card mb-3" style="width: 100%">
                                     <div class="row no-gutters">
@@ -204,7 +205,7 @@
                                 </div>
                             </div>
                             <%}
-                                    }%>
+                                }%>
                         </div>
                     </div>
                 </div>
@@ -218,14 +219,26 @@
                         <div class="row">
                             <div class="col-3 col-lg-3 col-md-3 col-sm-12 d-flex flex-column">
                                 <div class="row">
-                                    <img id="fotoUser" style="object-fit: cover; width:200px;height: 200px;"   src="<%=ct.getFoto()%>" alt="Image User" class=" img-fluid img-thumbnail rounded-circle">
+                                    <%
+                                                String str = ct.getFoto();
+                                                int pos = (ct.getFoto()).lastIndexOf("/");
+                                                String ch = "%2F";
+                                                str = str.substring(0, pos)
+                                                        + ch
+                                                        + str.substring(pos + 1);
+
+                                    %>
+                                    <div id="spinner" style="margin-left: 90px; display: none;" class="align-self-md-center spinner-border text-light position-absolute" role="status">
+                                        <span class="sr-only">Loading...</span>
+                                    </div>
+                                    <img id="fotoUser" style="object-fit: cover; width:200px;height: 200px;"   src="<%=str%>" alt="Image User" class=" img-fluid img-thumbnail rounded-circle">
                                 </div>
                                 <div class="row">
                                     <form>
                                         <label for="fotoChange" id="change" ><a href="#">Cambiar foto</a></label>
-                                         <input type="file" hidden id="fotoChange">
+                                        <input type="file" hidden id="fotoChange">
                                     </form>
-                                   
+
                                 </div>
 
                             </div>
@@ -252,26 +265,26 @@
         </div>
     </div>
 
-<!--Alerta de formato-->
-                            <div id="myModal" class="modal" tabindex="-1" role="dialog">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title">Error de formato</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <p>No se permite formatos diferentes de JPG,JPEG,PNG,GIF</p>
-                                        </div>
-                                        <div class="modal-footer">
+    <!--Alerta de formato-->
+    <div id="myModal" class="modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Error de formato</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>No se permite formatos diferentes de JPG,JPEG,PNG,GIF</p>
+                </div>
+                <div class="modal-footer">
 
-                                            <button type="button" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
 
@@ -281,11 +294,14 @@
 
     <!--JavaScript-->
     <jsp:include page="../headers/javascript.jsp"/>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.2.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.2.3/firebase-storage.js"></script>
     <!--Funcion de Tooltip-->
     <script>
-        $(function () {
-            $('[data-toggle="tooltip"]').tooltip()
-        })
+                                    $(function () {
+                                        $('[data-toggle="tooltip"]').tooltip()
+                                    })
     </script>
     <script src="main.js"></script>
     <script src="Vendido.js"></script>

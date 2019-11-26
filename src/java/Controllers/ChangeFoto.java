@@ -7,6 +7,8 @@ package Controllers;
 
 import Cuenta.Cuenta;
 import Cuenta.CuentaDAO;
+import Usuario.Usuario;
+import Usuario.UsuarioDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -14,6 +16,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -38,12 +41,34 @@ public class ChangeFoto extends HttpServlet {
             /* TODO output your page here. You may use following sample code. */
             String base64 = request.getParameter("base64");
             int id = Integer.parseInt(request.getParameter("id"));
-            
+            out.print("ok");
             CuentaDAO ctD = new CuentaDAO();
             Cuenta ct = new Cuenta();
             ct.setIdCuenta(id);
             ct.setFoto(base64);
             ctD.ActualizarFoto(ct);
+            
+            Usuario user = new Usuario();
+                    CuentaDAO cta = new CuentaDAO();
+                    Cuenta cuenta = new Cuenta();
+                    
+                    
+                    user.setIdUsuario(id);
+                    System.out.print(user.getNombre());
+                    
+                    
+                    cuenta = cta.LeerCuenta(id);
+                    
+                    HttpSession session = request.getSession();
+                    session.setMaxInactiveInterval(-1);
+                    session.setAttribute("usuario", cuenta.getUser().getNombre());
+                    session.setAttribute("usuarioObjeto", cuenta.getUser());
+                    session.setAttribute("cuentaObjeto", cuenta);
+                    session.setAttribute("idUsuario", cuenta.getUser().getIdUsuario());
+            
+            
+            
+            out.print("ok");
         }
     }
 
