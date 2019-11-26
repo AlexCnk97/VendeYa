@@ -44,10 +44,25 @@ public class Search extends HttpServlet {
                 query = request.getParameter("query");
                 ArrayList<Articulo> articulo = new ArrayList<>();
                 ArticuloDAO dao = new ArticuloDAO();
-
+                
                 articulo = dao.SearchArticulo(query);
-
-                request.setAttribute("ArticuloList", articulo);
+                ////Lista de la paginacion
+                ArrayList<ArrayList<Articulo>> art = new ArrayList<ArrayList<Articulo>>();
+               
+                float Tamanio = (float) articulo.size() / 12;
+                
+                for (int i = 0; i < Tamanio; i++) {
+                    for (int j = 0; j < 12 ; j++) {
+                        if(articulo.get(j)!=null){
+                            System.out.println("item numero = "+ j);
+                        }
+                       
+                    }
+                    System.out.println("nueva lista");
+                }
+                // Double division = Double.parseDouble(Tamanio);
+                System.out.println("paginas" + round(Tamanio));
+                 request.setAttribute("ArticuloList", articulo);
                 RequestDispatcher rdp = request.getRequestDispatcher("/Search/");
                 rdp.forward(request, response);
             }
@@ -55,7 +70,7 @@ public class Search extends HttpServlet {
                 category = Integer.parseInt(request.getParameter("category"));
                 ArrayList<Articulo> articulo2 = new ArrayList<Articulo>();
                 ArticuloDAO dao2 = new ArticuloDAO();
-
+                
                 articulo2 = dao2.CategoriasArtic(category);
                 
                 request.setAttribute("ArticuloList", articulo2);
@@ -65,7 +80,18 @@ public class Search extends HttpServlet {
             if (!request.getParameter("page").isEmpty()) {
                 page = Integer.parseInt(request.getParameter("page"));
             }
+            
+        }
+    }
 
+    private int round(double d) {
+        double dAbs = Math.abs(d);
+        int i = (int) dAbs;
+        double result = dAbs - (double) i;
+        if (result < 0.5) {
+            return d < 0 ? -i : i;            
+        } else {
+            return d < 0 ? -(i + 1) : i + 1;            
         }
     }
 

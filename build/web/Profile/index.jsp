@@ -36,6 +36,7 @@
         int port = request.getServerPort();
     %>
     <input id="port" type="hidden" value="<%=port%>"/>
+    <input id="idCuenta" type="hidden" value="<%=ct.getIdCuenta()%>">
     <!--Navbar-->
     <jsp:include page="../headers/navbarquestions.jsp" />
     <!--Modal-->
@@ -106,7 +107,7 @@
                 <div class="tab-pane fade show active" id="Activos" role="tabpanel" aria-labelledby="home-tab">
                     <div class="jumbotron">
                         <div class="row">
-                            <%if (listPos.isEmpty()) {%>
+                            <%if(listPos.isEmpty()){%>
                             <div class="col-12 alert alert-info text-muted" role="alert">
                                 No has hecho un anuncio
                             </div>
@@ -217,10 +218,14 @@
                         <div class="row">
                             <div class="col-3 col-lg-3 col-md-3 col-sm-12 d-flex flex-column">
                                 <div class="row">
-                                    <img  width="200px" height="200px" src="<%=ct.getFoto()%>" alt="Image User" class=" img-fluid img-thumbnail rounded-circle">
+                                    <img id="fotoUser" style="object-fit: cover; width:200px;height: 200px;"   src="<%=ct.getFoto()%>" alt="Image User" class=" img-fluid img-thumbnail rounded-circle">
                                 </div>
                                 <div class="row">
-                                    <a class="ml-5"href="#">Cambiar foto</a>
+                                    <form>
+                                        <label for="fotoChange" id="change" ><a href="#">Cambiar foto</a></label>
+                                         <input type="file" hidden id="fotoChange">
+                                    </form>
+                                   
                                 </div>
 
                             </div>
@@ -247,8 +252,26 @@
         </div>
     </div>
 
+<!--Alerta de formato-->
+                            <div id="myModal" class="modal" tabindex="-1" role="dialog">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title">Error de formato</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p>No se permite formatos diferentes de JPG,JPEG,PNG,GIF</p>
+                                        </div>
+                                        <div class="modal-footer">
 
-
+                                            <button type="button" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
 
 
@@ -267,6 +290,7 @@
     <script src="main.js"></script>
     <script src="Vendido.js"></script>
     <script src="Actualizar.js"></script>
+    <script src="changeFoto.js"></script>
 </body>
 
 </html>

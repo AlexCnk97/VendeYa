@@ -14,7 +14,7 @@ primary key(idUsuario)
 create table Cuentas (
 idCuenta int not null auto_increment,
 idUsuario int not null,
-foto varchar(500) not null,
+foto blob not null,
 fec_creacion datetime not null,
 primary key(idCuenta),
 foreign key(idUsuario) references Usuarios(idUsuario)

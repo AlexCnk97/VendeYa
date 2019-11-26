@@ -40,7 +40,12 @@ public class CuentaDAO implements CuentaCRUD {
 
     @Override
     public void ActualizarFoto(Cuenta ct) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            this.database.excuteUpdate("update Cuentas set foto = '"+ct.getFoto()+ "' where idCuenta="+ct.getIdCuenta());
+        } catch (SQLException ex) {
+            Logger.getLogger(CuentaDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
 
     @Override
